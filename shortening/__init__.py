@@ -1,0 +1,1 @@
+from .shortening import app
