@@ -1,0 +1,7 @@
+click==6.7
+Flask==0.12.2
+itsdangerous==0.24
+Jinja2==2.9.6
+MarkupSafe==1.0
+-e git+https://github.com/dovekie/shortening.git@5e391b90c583b10fc7e89cfa4a6d53bb9641a879#egg=shortening
+Werkzeug==0.12.2
