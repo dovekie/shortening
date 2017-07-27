@@ -4,7 +4,7 @@ from flask import (Flask, request, session, g, redirect, url_for, abort,
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
-print 'Launching with settings: '.format(os.environ['APP_SETTINGS'])
+print 'Launching with settings:', os.environ['APP_SETTINGS']
 
 app.config.update(dict(
     #DATABASE=os.path.join(app.root_path, 'shortening.db'),
