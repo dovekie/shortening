@@ -21,7 +21,11 @@ connect_to_db(app)
 # VIEWS
 
 @app.route('/', methods=['GET'])
-def show_entries():
+@app.route('/<surl>', methods=['GET'])
+def show_entries(surl=None):
+    if surl:
+        entry = db.session.query(Surl.url).filter(Surl.short_url == surl).first()
+        return entry
     return 'Welcome to Shortening'
 
 @app.route('/', methods=['POST'])
