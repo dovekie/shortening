@@ -1,5 +1,7 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
+
+db = SQLAlchemy()
 
 class Surl(db.Model):
     __tablename__ = 'surls'
@@ -19,4 +21,10 @@ class Surl(db.Model):
         self.all_time_count = all_time_count
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {} url {} short_url {}>'.format(self.id, self.url, self.short_url)
+
+def connect_to_db(app):
+    """Connect the database to our Flask app."""
+
+    db.app = app
+    db.init_app(app)
