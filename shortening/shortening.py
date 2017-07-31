@@ -40,9 +40,6 @@ def hash_it():
     db.session.commit()
     return hashed_url
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 # HELPER FUNCTIONS
 
 def unique_hash(str_input):
@@ -52,4 +49,4 @@ def unique_hash(str_input):
     return hash_object.hexdigest()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
