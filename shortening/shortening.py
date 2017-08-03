@@ -33,6 +33,7 @@ def hash_it():
     hashed_url = unique_hash(request.form['url'])
     new_surl = Surl(url=request.form['url'],
                     short_url=hashed_url,
+                    last_accessed=datetime.now(),
                     day_count=1,
                     week_count=1,
                     all_time_count=1)
