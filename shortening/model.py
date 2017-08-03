@@ -17,13 +17,13 @@ class Surl(db.Model):
     def __init__(self, url, short_url, day_count, week_count, all_time_count, last_accessed):
         self.url = url
         self.short_url = short_url
-        last_accessed = last_accessed
+        self.last_accessed = last_accessed
         self.day_count = day_count
         self.week_count = week_count
         self.all_time_count = all_time_count
 
     def __repr__(self):
-        return '<id {} url {} short_url {}>'.format(self.id, self.url, self.short_url)
+        return '<id {} last_accessed {} url {} short_url {}>'.format(self.id, self.last_accessed, self.url, self.short_url)
 
 def connect_to_db(app):
     """Connect the database to our Flask app."""

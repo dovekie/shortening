@@ -37,6 +37,7 @@ def hash_it():
                     day_count=1,
                     week_count=1,
                     all_time_count=1)
+    print 'Adding a new entry:', new_surl
     db.session.add(new_surl)
     db.session.commit()
     return hashed_url
