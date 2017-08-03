@@ -23,7 +23,16 @@ class Surl(db.Model):
         self.all_time_count = all_time_count
 
     def __repr__(self):
-        return '<id {} last_accessed {} url {} short_url {}>'.format(self.id, self.last_accessed, self.url, self.short_url)
+        return ('<id {} last_accessed {} url {} short_url'
+                ' {} day_count {} week_count {} all_time_count {}>').format(
+                self.id, 
+                self.last_accessed, 
+                self.url, 
+                self.short_url,
+                self.day_count,
+                self.week_count,
+                self.all_time_count
+                )
 
 def connect_to_db(app):
     """Connect the database to our Flask app."""

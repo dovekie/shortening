@@ -27,6 +27,14 @@ def show_entries(surl=None):
         entry = Surl.query.filter_by(short_url=surl).first()
     	if entry:
         	print entry
+        	if accessed_today(entry.last_accessed):
+        		entry.day_count += 1
+        	if accessed_this_week(entry.last_accessed):
+        		entry.week_count += 1
+        	entry.last_accessed = datetime.now()
+        	entry.all_time_count += 1
+    		db.session.commit()
+        	print entry
         	return entry.url
 
     return 'Welcome to Shortening'
@@ -48,16 +56,29 @@ def hash_it():
 # HELPER FUNCTIONS
 
 def unique_hash(str_input):
+    """Create a unique hash from an input string
+    """
     d = datetime.now().isoformat()
     hashable = str_input + d
     hash_object = hashlib.md5(b'{}'.format(hashable))
     return hash_object.hexdigest()
 
 def accessed_today(last_accessed):
-	pass
+    """Determine whether a shortenend url was accessed today
+    """
+    today = datetime.now().date()
+    if last_accessed.date() == today:
+        return True
 
 def accessed_this_week(last_accessed):
-	pass
+    """Determine whether a shortenend url was accessed this week
+    """
+    this_week = datetime.now().date().isocalendar()[1]
+    print "this week is week", this_week
+    if last_accessed.date().isocalendar()[1] == this_week:
+        return True
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
