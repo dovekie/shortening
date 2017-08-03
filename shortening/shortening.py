@@ -25,17 +25,20 @@ connect_to_db(app)
 def show_entries(surl=None):
     if surl:
         entry = Surl.query.filter_by(short_url=surl).first()
-    	if entry:
-        	print entry
-        	if accessed_today(entry.last_accessed):
-        		entry.day_count += 1
-        	if accessed_this_week(entry.last_accessed):
-        		entry.week_count += 1
-        	entry.last_accessed = datetime.now()
-        	entry.all_time_count += 1
-    		db.session.commit()
-        	print entry
-        	return entry.url
+        if entry:
+            print entry
+            if accessed_today(entry.last_accessed):
+                entry.day_count += 1
+            else:
+                entry.day_count = 1
+            if accessed_this_week(entry.last_accessed):
+                entry.week_count += 1
+            else:
+                entry.week_count = 1
+            entry.last_accessed = datetime.now()
+            entry.all_time_count += 1
+            db.session.commit()
+            return entry.url
 
     return 'Welcome to Shortening'
 
@@ -64,14 +67,14 @@ def unique_hash(str_input):
     return hash_object.hexdigest()
 
 def accessed_today(last_accessed):
-    """Determine whether a shortenend url was accessed today
+    """Return true if a shortenend url was accessed today
     """
     today = datetime.now().date()
     if last_accessed.date() == today:
         return True
 
 def accessed_this_week(last_accessed):
-    """Determine whether a shortenend url was accessed this week
+    """Return true if a shortenend url was accessed this week
     """
     this_week = datetime.now().date().isocalendar()[1]
     print "this week is week", this_week
