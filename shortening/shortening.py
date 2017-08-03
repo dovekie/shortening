@@ -24,8 +24,11 @@ connect_to_db(app)
 @app.route('/<surl>', methods=['GET'])
 def show_entries(surl=None):
     if surl:
-        entry = db.session.query(Surl.url).filter(Surl.short_url == surl).first()
-        return entry
+        entry = Surl.query.filter_by(short_url=surl).first()
+    	if entry:
+        	print entry
+        	return entry.url
+
     return 'Welcome to Shortening'
 
 @app.route('/', methods=['POST'])
@@ -49,6 +52,12 @@ def unique_hash(str_input):
     hashable = str_input + d
     hash_object = hashlib.md5(b'{}'.format(hashable))
     return hash_object.hexdigest()
+
+def accessed_today(last_accessed):
+	pass
+
+def accessed_this_week(last_accessed):
+	pass
 
 if __name__ == '__main__':
     app.run(debug=True)
