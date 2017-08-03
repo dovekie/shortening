@@ -54,7 +54,7 @@ def hash_it():
     print 'Adding a new entry:', new_surl
     db.session.add(new_surl)
     db.session.commit()
-    return hashed_url
+    return 'http://127.0.0.1:5000/{}'.format(hashed_url)
 
 # HELPER FUNCTIONS
 

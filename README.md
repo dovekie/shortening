@@ -4,7 +4,7 @@ Endpoints:
 
  * To generate a short url:
  
- 	```curl -X "POST" http://127.0.0.1:5000/ -d "url=https://www.google.com"```
+ 	```curl -X "POST" http://127.0.0.1:5000/ -d "url=<your url here>"```
  
  
  * To retrieve a url:
